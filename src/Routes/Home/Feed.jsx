@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
+import { FunnelIcon } from '@heroicons/react/24/outline';
 import ListingCard from '../../components/Listing/ListingCard';
 
-// Temporary mock data - replace with real API later
+// Mock data with the ORIGINAL working images
 const mockListings = [
   {
     id: 1,
@@ -12,7 +12,7 @@ const mockListings = [
     condition: "good",
     disposition: "sell",
     location: "Nairobi",
-    photos: ["https://via.placeholder.com/400"],
+    photos: ["https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"],
     timeAgo: "2 hours ago",
     views: 45
   },
@@ -23,7 +23,7 @@ const mockListings = [
     condition: "like new",
     disposition: "sell",
     location: "Mombasa",
-    photos: ["https://via.placeholder.com/400"],
+    photos: ["https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"],
     timeAgo: "5 hours ago",
     views: 23
   },
@@ -33,7 +33,7 @@ const mockListings = [
     condition: "good",
     disposition: "donate",
     location: "Nairobi",
-    photos: ["https://via.placeholder.com/400"],
+    photos: ["https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"],
     timeAgo: "1 day ago",
     views: 12
   },
@@ -44,7 +44,7 @@ const mockListings = [
     condition: "fair",
     disposition: "sell",
     location: "Kisumu",
-    photos: ["https://via.placeholder.com/400"],
+    photos: ["https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"],
     timeAgo: "3 days ago",
     views: 34
   },
@@ -54,7 +54,7 @@ const mockListings = [
     condition: "fair",
     disposition: "recycle",
     location: "Nairobi",
-    photos: ["https://via.placeholder.com/400"],
+    photos: ["https://images.pexels.com/photos/15139464/pexels-photo-15139464.jpeg"],
     timeAgo: "1 week ago",
     views: 8
   },
@@ -65,24 +65,19 @@ const mockListings = [
     condition: "good",
     disposition: "sell",
     location: "Nakuru",
-    photos: ["https://via.placeholder.com/400"],
+    photos: ["https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?w=400&h=400&fit=crop"],
     timeAgo: "2 days ago",
     views: 19
   }
 ];
 
 export default function Feed() {
-  const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('all');
   
-  // Simulate loading state
   const { data: listings, isLoading } = useQuery({
     queryKey: ['feed', activeFilter],
     queryFn: async () => {
-      // Simulate API delay
       await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Filter based on active filter
       if (activeFilter === 'all') return mockListings;
       return mockListings.filter(item => item.disposition === activeFilter);
     },
@@ -116,22 +111,17 @@ export default function Feed() {
 
   return (
     <div className="py-6">
-      {/* Search Bar */}
-      <div className="mb-6">
-        <div className="relative">
-          <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search items..."
-            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none"
-          />
-        </div>
+      {/* Header with filter only - NO SEARCH BAR HERE */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-900">Browse Items</h1>
+        <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+          <FunnelIcon className="h-5 w-5 text-gray-600" />
+          <span className="text-sm hidden sm:inline">Filter</span>
+        </button>
       </div>
 
-      {/* Filters */}
-      <div className="flex justify-between items-center mb-6">
+      {/* Filter Chips */}
+      <div className="mb-6">
         <div className="flex space-x-2 overflow-x-auto pb-2">
           {filters.map((filter) => (
             <button
@@ -147,9 +137,6 @@ export default function Feed() {
             </button>
           ))}
         </div>
-        <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-          <FunnelIcon className="h-5 w-5 text-gray-600" />
-        </button>
       </div>
 
       {/* Results count */}

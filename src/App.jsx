@@ -6,6 +6,10 @@ import { AuthProvider } from './features/auth/AuthProvider';
 import ProtectedRoute from './app/ProtectedRoute';
 import AppShell from './components/Layout/AppShell';
 import Feed from './Routes/Home/Feed';
+import Profile from './Routes/Profile/Profile';
+import PostItemWizard from './Routes/Post/PostItemWizard';
+import Verification from './Routes/Profile/Verification';
+import ConfirmReceipt from './Routes/Orders/ConfirmReceipt';
 
 // Create a client for React Query
 const queryClient = new QueryClient({
@@ -52,13 +56,6 @@ const MyListings = () => (
   </div>
 );
 
-const Profile = () => (
-  <div className="py-8">
-    <h2 className="text-2xl font-bold mb-4">Profile</h2>
-    <p className="text-gray-600">Profile page coming soon!</p>
-  </div>
-);
-
 const Search = () => (
   <div className="py-8">
     <h2 className="text-2xl font-bold mb-4">Search</h2>
@@ -70,13 +67,6 @@ const Categories = () => (
   <div className="py-8">
     <h2 className="text-2xl font-bold mb-4">Categories</h2>
     <p className="text-gray-600">Browse by category coming soon!</p>
-  </div>
-);
-
-const PostItemWizard = () => (
-  <div className="py-8">
-    <h2 className="text-2xl font-bold mb-4">Post an Item</h2>
-    <p className="text-gray-600">Item posting wizard coming soon!</p>
   </div>
 );
 
@@ -174,15 +164,18 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             
-            {/* Protected routes */}
+            {/* Protected routes - all routes below require authentication */}
             <Route element={<ProtectedRoute />}>
               <Route element={<AppShell />}>
-                {/* Main routes */}
+                {/* Main routes - Profile is prominently placed */}
                 <Route path="/" element={<Feed />} />
                 <Route path="/feed" element={<Feed />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/post" element={<PostItemWizard />} />
+                <Route path="/verify" element={<Verification />} />
+                <Route path="/settings" element={<Settings />} />
                 
                 {/* Listing routes */}
                 <Route path="/listing/:id" element={<ListingDetail />} />
@@ -194,14 +187,11 @@ function App() {
                 <Route path="/purchases" element={<MyPurchases />} />
                 <Route path="/sales" element={<MySales />} />
                 <Route path="/order/:id" element={<OrderDetail />} />
+                <Route path="/confirm-receipt/:id" element={<ConfirmReceipt />} />
                 
                 {/* Chat routes */}
                 <Route path="/inbox" element={<Inbox />} />
                 <Route path="/inbox/:id" element={<Thread />} />
-                
-                {/* Profile routes */}
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/settings" element={<Settings />} />
                 
                 {/* Admin routes */}
                 <Route path="/admin/donations" element={<DonationBatches />} />

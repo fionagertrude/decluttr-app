@@ -1,26 +1,26 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import {
   HomeIcon,
   PlusCircleIcon,
   ShoppingBagIcon,
   ChatBubbleLeftIcon,
   UserIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/24/outline';
 import {
   HomeIcon as HomeIconSolid,
   PlusCircleIcon as PlusCircleIconSolid,
   ShoppingBagIcon as ShoppingBagIconSolid,
   ChatBubbleLeftIcon as ChatBubbleLeftIconSolid,
   UserIcon as UserIconSolid,
-} from '@heroicons/react/24/solid'
+} from '@heroicons/react/24/solid';
 
 const navItems = [
   { to: '/feed', label: 'Home', icon: HomeIcon, activeIcon: HomeIconSolid },
   { to: '/post', label: 'Sell', icon: PlusCircleIcon, activeIcon: PlusCircleIconSolid },
   { to: '/purchases', label: 'Orders', icon: ShoppingBagIcon, activeIcon: ShoppingBagIconSolid },
   { to: '/inbox', label: 'Chat', icon: ChatBubbleLeftIcon, activeIcon: ChatBubbleLeftIconSolid },
-  { to: '/profile', label: 'Profile', icon: UserIcon, activeIcon: UserIconSolid },
-]
+  { to: '/profile', label: 'Profile', icon: UserIcon, activeIcon: UserIconSolid }, // This is correct
+];
 
 export default function BottomNav() {
   return (
@@ -50,5 +50,5 @@ export default function BottomNav() {
         ))}
       </div>
     </nav>
-  )
+  );
 }

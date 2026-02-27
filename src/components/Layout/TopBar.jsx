@@ -1,12 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { MagnifyingGlassIcon, UserCircleIcon } from '@heroicons/react/24/outline'
-import { useAuth } from '../../features/auth/AuthProvider'
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { MagnifyingGlassIcon, UserCircleIcon } from '@heroicons/react/24/outline';
+import { useAuth } from '../../features/auth/AuthProvider';
 
 export default function TopBar() {
-  const { user, signOut } = useAuth()
-  const navigate = useNavigate()
-  const [showMenu, setShowMenu] = useState(false)
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <nav className="fixed top-0 w-full bg-emerald-600 text-white shadow-lg z-50">
@@ -34,7 +34,7 @@ export default function TopBar() {
               className="flex items-center space-x-2 hover:bg-emerald-700 px-3 py-2 rounded-lg transition-colors"
             >
               <UserCircleIcon className="h-6 w-6" />
-              <span className="hidden md:block">{user?.email}</span>
+              <span className="hidden md:block">{user?.email || 'Guest'}</span>
             </button>
 
             {showMenu && (
@@ -67,10 +67,25 @@ export default function TopBar() {
                 >
                   Sales
                 </Link>
+                <Link
+                  to="/verify"
+                  className="block px-4 py-2 hover:bg-emerald-50"
+                  onClick={() => setShowMenu(false)}
+                >
+                  Verify Identity
+                </Link>
+                <Link
+                  to="/settings"
+                  className="block px-4 py-2 hover:bg-emerald-50"
+                  onClick={() => setShowMenu(false)}
+                >
+                  Settings
+                </Link>
+                <div className="border-t border-gray-100 my-1"></div>
                 <button
                   onClick={() => {
-                    signOut()
-                    setShowMenu(false)
+                    signOut();
+                    setShowMenu(false);
                   }}
                   className="block w-full text-left px-4 py-2 hover:bg-emerald-50 text-red-600"
                 >
@@ -82,5 +97,5 @@ export default function TopBar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
