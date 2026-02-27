@@ -1,17 +1,17 @@
-import { Outlet } from 'react-router-dom'
-import TopBar from './TopBar'
-import BottomNav from './BottomNav'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 export default function AppShell() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <TopBar />
-      <main className="pb-20 pt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Outlet />
+      <nav className="bg-emerald-600 text-white p-4">
+        <div className="container mx-auto">
+          <h1 className="text-2xl font-bold">Decluttr</h1>
         </div>
+      </nav>
+      <main className="container mx-auto p-4">
+        <Outlet />
       </main>
-      <BottomNav />
     </div>
-  )
+  );
 }

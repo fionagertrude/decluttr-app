@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --primary: 167 68% 44%;
-    --primary-foreground: 0 0% 100%;
-  }
-  
   body {
     @apply bg-gray-50 text-gray-900;
   }
