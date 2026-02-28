@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 import { CheckCircleIcon } from '@heroicons/react/24/outline'
-import api from '../../lib/api/client'
+import api from '../../lib/API/Client/client'
 import { useAuth } from '../../features/auth/AuthProvider'
 import toast from 'react-hot-toast'
-import ConfirmReceivedButton from './ConfirmReceivedButton'
+import ConfirmReceivedButton from '../Post/Orders/ConfirmReceivedButton'
 
 export default function OrderDetail() {
   const { id } = useParams()
