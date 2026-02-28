@@ -8,7 +8,7 @@ import {
   CreditCardIcon,
   CheckBadgeIcon 
 } from '@heroicons/react/24/outline';
-import { useOrder } from '../../features/orders/OrderProvider';
+import { useOrder } from '../../features/order/OrderProvider';
 import { useAuth } from '../../features/auth/AuthProvider';
 import api from '../../lib/API/Client/client';
 import toast from 'react-hot-toast';

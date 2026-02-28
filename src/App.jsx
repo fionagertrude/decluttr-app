@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';  // Note: Brows
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './features/auth/AuthProvider';
-import { OrderProvider } from './features/Orders/OrderProvider';
+import { OrderProvider } from './features/order/OrderProvider';  
 import ProtectedRoute from './app/ProtectedRoute';
 import AppShell from './components/Layout/AppShell';
 import Feed from './Routes/Home/Feed';
